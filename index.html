@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Postcards from the Traveling Cat · Home</title>
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#1c1f24; --muted:#6b7380; --brand:#ff7a00; --card:#f6f7f9; --ring:rgba(255,122,0,.35);
+    }
+    [data-theme="dark"]{
+      --bg:#0f1115; --fg:#e8eef6; --muted:#9aa5b1; --brand:#ff9a3c; --card:#151922; --ring:rgba(255,154,60,.35);
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB",Arial;}
+    *{box-sizing:border-box}
+    a{color:var(--brand);text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:16px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .title{font-weight:800;letter-spacing:.3px}
+    .theme-toggle{border:1px solid var(--muted);background:transparent;color:var(--fg);padding:8px 12px;border-radius:12px;cursor:pointer}
+    .theme-toggle:focus{outline:none;box-shadow:0 0 0 6px var(--ring)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:center;margin:8px 0 16px}
+    .badge{display:inline-block;background:var(--card);padding:4px 10px;border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:8px}
+    h1{font-size:28px;margin:6px 0 8px}
+    p{margin:6px 0;color:var(--muted)}
+    .cta{margin-top:12px}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 16px;border-radius:12px;font-weight:700;box-shadow:0 8px 18px rgba(255,122,0,.25);transform:translateY(0);transition:transform .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .media{position:relative}
+    video, img{width:100%;border-radius:16px;display:block}
+    video{background:#000;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+    .card{background:var(--card);border-radius:16px;padding:16px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+    .about ul{margin:10px 0 0 18px;color:var(--muted)}
+    footer{border-top:1px dashed rgba(127,127,127,.25);margin-top:24px;padding:16px 0;color:var(--muted);font-size:13px}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .about{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">Postcards from the Traveling Cat</div>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle color theme">🌗 Theme</button>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <span class="badge">AI-generated video · Autoplay & Loop</span>
+        <h1 id="hero-title">Giant Orange Cat × My Travel Memories</h1>
+        <p>I turn real travel photos into gentle, hand-drawn postcard scenes—then invite a giant orange cat to crash the moment. The result is playful, cozy, and a little bit surreal.</p>
+        <div class="cta"><a class="btn" href="content.html" aria-label="Open the postcard gallery">Enter the Gallery →</a></div>
+      </div>
+      <div class="media">
+        <!-- Autoplaying loop; poster shows if video is loading -->
+        <video src="video.mp4" autoplay loop muted playsinline controlslist="nodownload noplaybackrate"
+               poster="portrait.jpg" aria-label="Looping hero video with postcard scenes and a giant orange cat"></video>
+      </div>
+    </section>
+
+    <section class="about card" aria-labelledby="about-title">
+      <img src="portrait.jpg" alt="Creator portrait or theme photo" style="width:100%;border-radius:12px;">
+      <div>
+        <h2 id="about-title" style="margin:0 0 6px;">About the Project</h2>
+        <p>This tiny site is a sketchbook I can carry in my pocket. With a dash of AI and a lot of curiosity, I blend real journeys with dreamy textures to keep wonder close.</p>
+        <ul>
+          <li>I love wandering unfamiliar streets and slow sunsets.</li>
+          <li>AI helps me restyle photos into postcard-like illustrations.</li>
+          <li>Goal: archive real trips with a playful imagination.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>© 2025 · Postcards from the Traveling Cat</footer>
+  </div>
+
+  <script>
+    // Light/Dark theme toggle with localStorage persistence
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>

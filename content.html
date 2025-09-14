@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Postcards from the Traveling Cat · Gallery</title>
+  <style>
+    :root{ --bg:#ffffff; --fg:#1c1f24; --muted:#6b7380; --brand:#ff7a00; --card:#f6f7f9; --ring:rgba(255,122,0,.35); }
+    [data-theme="dark"]{ --bg:#0f1115; --fg:#e8eef6; --muted:#9aa5b1; --brand:#ff9a3c; --card:#151922; --ring:rgba(255,154,60,.35); }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB",Arial;}
+    *{box-sizing:border-box}
+    a{color:var(--brand);text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:16px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .title{font-weight:800}
+    .theme-toggle{border:1px solid var(--muted);background:transparent;color:var(--fg);padding:8px 12px;border-radius:12px;cursor:pointer}
+    .theme-toggle:focus{outline:none;box-shadow:0 0 0 6px var(--ring)}
+    .controls{display:flex;gap:8px}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 12px;border-radius:10px;font-weight:700}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+    @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+    .postcard{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.10);transform:rotateZ(0);transition:transform .18s ease, box-shadow .18s ease}
+    /* Hover tilt effect */
+    .postcard:hover{transform:translateY(-4px) rotateZ(-1.25deg);box-shadow:0 16px 36px rgba(0,0,0,.18)}
+    .postcard img{width:100%;display:block}
+    figcaption{padding:12px}
+    .cap-title{margin:0 0 6px;font-size:16px;font-weight:700}
+    .cap-text{margin:0;color:var(--muted);font-size:14px}
+    .coming-soon{display:flex;align-items:center;justify-content:center;height:100%;padding:40px;text-align:center;font-size:20px;font-family:"Comic Sans MS", "Brush Script MT", cursive;color:var(--muted)}
+    footer{border-top:1px dashed rgba(127,127,127,.25);margin-top:24px;padding:16px 0;color:var(--muted);font-size:13px}
+    @media (prefers-reduced-motion: reduce){ .postcard{transition:none} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">Gallery</div>
+      <div class="controls">
+        <a class="btn" href="index.html" aria-label="Go back to home">← Back to Home</a>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle color theme">🌗 Theme</button>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Postcard grid gallery">
+      <!-- Card 1 -->
+      <figure class="postcard">
+        <img src="postcard-1.jpg" alt="Tromsø postcard: giant orange cat leaping across a snowy blue-hour sky above Fjellheisen">
+        <figcaption>
+          <h3 class="cap-title">Tromsø — Fjellheisen</h3>
+          <p class="cap-text">In the blue hour of polar night, the giant orange cat leaps across the sky, trailing snowflakes that shimmer in the dark.</p>
+        </figcaption>
+      </figure>
+
+      <!-- Card 2 -->
+      <figure class="postcard">
+        <img src="postcard-2.jpg" alt="Seville postcard: sunset at Plaza de España, orange cat stretching lazily by the boats and flamenco dancers">
+        <figcaption>
+          <h3 class="cap-title">Seville — Plaza de España</h3>
+          <p class="cap-text">At sunset, the square glows golden; boats ripple with laughter and flamenco dancers have just finished a fiery set. The cat stretches lazily as the day winds down.</p>
+        </figcaption>
+      </figure>
+
+      <!-- Card 3 -->
+      <figure class="postcard">
+        <img src="postcard-3.jpg" alt="Prague postcard: giant orange cat resting on classic red rooftops with the river winding below">
+        <figcaption>
+          <h3 class="cap-title">Prague — Red Rooftops</h3>
+          <p class="cap-text">Classic terracotta roofs and the river curling through the city below. The cat lounges in comfort, plotting the next stop of its wandering journey.</p>
+        </figcaption>
+      </figure>
+
+      <!-- Card 4: Coming soon text card -->
+      <figure class="postcard">
+        <div class="coming-soon">To be continued...</div>
+      </figure>
+    </section>
+
+    <footer>© 2025 · Postcards from the Traveling Cat</footer>
+  </div>
+
+  <script>
+    // Theme toggle with persistence
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
